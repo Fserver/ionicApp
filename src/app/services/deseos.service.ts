@@ -9,7 +9,24 @@ export class DeseosService {
   listas: Lista[] = [];
 
   constructor() {
-    console.log('servicio activo');
+    this.cargarStorage();
+  }
+  crearLista(titulo: string) {
+    const elemento = new Lista(titulo);
+    this.listas.push(elemento);
+    this.guardarStorage();
+  }
+
+  guardarStorage() {
+    localStorage.setItem('data', JSON.stringify(this.listas));
+  }
+
+  cargarStorage() {
+    if (localStorage.getItem('data')) {
+      this.listas = JSON.parse(localStorage.getItem('data'));
+    } else {
+      this.listas = [];
+    }
 
   }
 }
