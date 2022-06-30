@@ -15,19 +15,15 @@ export class Tab1Page {
     private router: Router, public alertController: AlertController) { }
 
   async agregarLista() {
-    // this.router.navigateByUrl('/tabs/tab1/agregar');
 
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Nueva lista',
-      // subHeader: 'Subtitle',
-      // message: 'This is an alert message.',
       inputs: [{
         name: 'titulo',
         type: 'text',
         placeholder: 'Nombre de la lista'
       }],
-      // buttons: ['OK']
       buttons: [{
         text: 'Cancelar',
         role: 'cancel',
@@ -41,7 +37,10 @@ export class Tab1Page {
           if (data.titulo.lenght === 0) {
             return;
           }
-          this.deseosService.crearLista(data.titulo);
+          const listaId = this.deseosService.crearLista(data.titulo);
+          console.log(listaId);
+          this.router.navigateByUrl(`/tabs/tab1/agregar/${listaId}`);
+
         }
       }]
     });

@@ -5,7 +5,7 @@ import { AgregarPage } from './agregar.page';
 
 const routes: Routes = [
   {
-    path: '',
+    path: ':listaId',
     component: AgregarPage
   }
 ];
