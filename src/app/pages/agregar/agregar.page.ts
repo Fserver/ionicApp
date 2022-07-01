@@ -17,13 +17,10 @@ export class AgregarPage implements OnInit {
   constructor(private deseosService: DeseosService,
     private activatedRoute: ActivatedRoute) {
     const listaId = this.activatedRoute.snapshot.paramMap.get('listaId');
-    console.log(listaId);
 
     this.lista = this.deseosService.obtenerLista(listaId);
 
     console.log(this.lista);
-
-
   }
 
   ngOnInit() {
@@ -55,6 +52,11 @@ export class AgregarPage implements OnInit {
     this.deseosService.guardarStorage();
 
     console.log(this.deseosService.listas);
+  }
+
+  borrar(index: number) {
+    this.lista.items.splice(index, 1);
+    this.deseosService.guardarStorage();
   }
 
 }
